@@ -1,8 +1,12 @@
 package jpabook.jpashop.domain;
 
+import jdk.jfr.DataAmount;
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Member {
 
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
