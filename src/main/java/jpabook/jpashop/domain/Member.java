@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import jpabook.jpashop.mappedsuperclass.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter@Setter
-public class Member {
+public class Member extends BaseEntity {
 
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
