@@ -14,6 +14,10 @@ public class Member extends BaseEntity {
     @Column(name = "member_id")
     private Long id;
 
+    @OneToMany
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     private String name;
     private String city;
     private String street;
