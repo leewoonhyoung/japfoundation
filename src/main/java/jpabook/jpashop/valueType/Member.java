@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -40,6 +44,22 @@ public class Member {
                 column = @Column(name = "work_zipcode"))
 })
     private Address workAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "favorite_food",
+            joinColumns = @JoinColumn(name = "member_id"))
+    @Column(name = "food_name")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+
+//    @ElementCollection
+//    @CollectionTable(name = "address",
+//    joinColumns = @JoinColumn(name = "member_id"))
+//    private List<Address> addressHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "member_id")
+    private List<AddressEntity> addressHistory = new ArrayList<>();
 
 
     public Member() {
