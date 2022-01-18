@@ -31,7 +31,6 @@ public class Member {
     //주소
     @Embedded
     private Address homeAddress;
-
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "city",
@@ -44,6 +43,7 @@ public class Member {
                 column = @Column(name = "work_zipcode"))
 })
     private Address workAddress;
+
 
     @ElementCollection
     @CollectionTable(name = "favorite_food",
