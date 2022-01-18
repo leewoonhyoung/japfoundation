@@ -4,15 +4,12 @@ package jpabook.jpashop;
 
 import jpabook.jpashop.cascade.Child;
 import jpabook.jpashop.cascade.Parent;
+import jpabook.jpashop.jpql.Member;
 import jpabook.jpashop.valueType.Address;
 import jpabook.jpashop.valueType.AddressEntity;
-import jpabook.jpashop.valueType.Member;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +26,11 @@ public class JpaMain {
         tx.begin();
 
         try {
+
+            //TypeQuery vs Query
+
+            TypedQuery<Member> query = em.createQuery("select m From Member m", Member.class);
+            Query query1 = em.createQuery("select m.username, m.age From Member m ");
 
             //embedded type 수정하는 방법.
             //            Address address = new Address("city", "street", "10000");
@@ -81,16 +83,16 @@ public class JpaMain {
 //            }
 
             //값 타입 수정
-            // homecity = > newCity
-            Member member = new Member();
-            Member findMember = em.find(Member.class, member.getId());
-            Address a = findMember.getHomeAddress();
-            findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
-
-            findMember.getFavoriteFoods().remove("치킨");
-            findMember.getFavoriteFoods().add("한식");
-            findMember.getAddressHistory().remove(new AddressEntity("old1", "street", "10000"));
-            findMember.getAddressHistory().add(new AddressEntity("newCity", "street", "10000"));
+//            // homecity = > newCity
+//            Member member = new Member();
+//            Member findMember = em.find(Member.class, member.getId());
+//            Address a = findMember.getHomeAddress();
+//            findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
+//
+//            findMember.getFavoriteFoods().remove("치킨");
+//            findMember.getFavoriteFoods().add("한식");
+//            findMember.getAddressHistory().remove(new AddressEntity("old1", "street", "10000"));
+//            findMember.getAddressHistory().add(new AddressEntity("newCity", "street", "10000"));
 
 
         } catch (Exception e){
