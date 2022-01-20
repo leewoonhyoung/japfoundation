@@ -5,6 +5,7 @@ package jpabook.jpashop;
 import jpabook.jpashop.cascade.Child;
 import jpabook.jpashop.cascade.Parent;
 import jpabook.jpashop.jpql.Member;
+import jpabook.jpashop.jpql.Team;
 import jpabook.jpashop.valueType.Address;
 import jpabook.jpashop.valueType.AddressEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -126,6 +127,13 @@ public class JpaMain {
                     .getResultList();
 
 
+            //jpql join
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setAge(10);
+
+            Team team = new team()
 
         } catch (Exception e){
             tx.rollback();
