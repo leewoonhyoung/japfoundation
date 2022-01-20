@@ -95,6 +95,38 @@ public class JpaMain {
 //            findMember.getAddressHistory().add(new AddressEntity("newCity", "street", "10000"));
 
 
+//            new 방법의 프로젝션
+//            Member member  = new Member();
+//            member.setUsername("member1");
+//            member.setAge(10);
+//            em.persist(member);
+//
+//            em.flush();
+//            em.clear();
+//
+//            List<Member> resultList = em.createQuery("select new jpabook.jpashop.jpql.MemberDto(m.username, m.age) from Member m", Member.class)
+//                    .getResultList();
+//            System.out.println("resultList = " + resultList);
+//
+
+//            pageing 예시
+            for (int i = 0 ; i <100 ; i++) {
+                Member member = new Member();
+                member.setUsername("member1" + i);
+                member.setAge(10);
+                em.persist(member);
+            }
+
+            em.flush();
+            em.clear();
+
+            List<Member> resultList = em.createQuery("select m from Member m order by m.age asc", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(10)
+                    .getResultList();
+
+
+
         } catch (Exception e){
             tx.rollback();
         } finally {
