@@ -30,11 +30,11 @@ public class JpaMain {
 
             //TypeQuery vs Query
 
-            TypedQuery<Member> query = em.createQuery("select m From Member m", Member.class);
-            Query query1 = em.createQuery("select m.username, m.age From Member m ");
+//            TypedQuery<Member> query = em.createQuery("select m From Member m", Member.class);
+//            Query query1 = em.createQuery("select m.username, m.age From Member m ");
 
             //embedded type 수정하는 방법.
-            //            Address address = new Address("city", "street", "10000");
+            //Address address = new Address("city", "street", "10000");
 //
 //            Member member1 = new Member();
 //            member1.setUsername("member1");
@@ -133,7 +133,23 @@ public class JpaMain {
             member.setUsername("member1");
             member.setAge(10);
 
-            Team team = new team()
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
+            member.changeTeam(team);
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            String query3 = "select m from Member m inner join m.team t";
+            List<Member> resultList1 = em.createQuery(query, Member.class)
+                    .setFirstResult(1)
+                    .setMaxResults(10)
+                    .getResultList();
+
 
         } catch (Exception e){
             tx.rollback();

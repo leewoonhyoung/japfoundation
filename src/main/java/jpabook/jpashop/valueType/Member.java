@@ -45,11 +45,11 @@ public class Member {
     private Address workAddress;
 
 
-    @ElementCollection
-    @CollectionTable(name = "favorite_food",
-            joinColumns = @JoinColumn(name = "member_id"))
-    @Column(name = "food_name")
-    private Set<String> favoriteFoods = new HashSet<>();
+//    @ElementCollection
+//    @CollectionTable(name = "favorite_food",
+//            joinColumns = @JoinColumn(name = "member_id"))
+//    @Column(name = "food_name")
+//    private Set<String> favoriteFoods = new HashSet<>();
 
 
 //    @ElementCollection
