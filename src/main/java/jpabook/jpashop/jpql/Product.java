@@ -16,6 +16,7 @@ public class Product {
     private int price;
     private int stockAccount;
 
+
     @OneToMany(mappedBy = "product")
     private List<Order> orders = new ArrayList<>();
 
