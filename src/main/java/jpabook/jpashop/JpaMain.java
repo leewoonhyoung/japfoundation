@@ -151,6 +151,8 @@ public class JpaMain {
                     .getResultList();
 
 
+
+
         } catch (Exception e){
             tx.rollback();
         } finally {
